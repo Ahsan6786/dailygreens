@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Greens – Fresh &amp; Healthy</title>
+    <meta name="description"
+        content="Daily Greens – Premium healthy salads and fresh food delivered to your door. Order now." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f4f4f4;
+            --dark-strip: #0E1F0E;
+            --btn-dark: #16a34a;
+            --price-red: #ff4d4d;
+            --nav-height: 80px;
+        }
+
+        html,
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: var(--nav-height);
+            background: #0E1F0E;
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+        }
+
+        .nav-logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a.active {
+            color: #a8d5a2;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            background: #a8d5a2;
+            border-radius: 50%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 36px;
+        }
+
+        .nav-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.75);
+            transition: color 0.2s;
+            padding: 4px;
+        }
+
+        .nav-icon-btn:hover {
+            color: #ffffff;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #1a1a1a;
+            border-radius: 2px;
+        }
+
+        /* ── HERO SECTION ── */
+        .hero {
+            min-height: 100vh;
+            padding-top: var(--nav-height);
+            background: var(--bg);
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* LEFT COLUMN */
+        .hero-left {
+            flex: 0 0 55%;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 20px;
+            /* Create stacking context so strip and plate both live here */
+            isolation: isolate;
+        }
+
+        /* Vertical sidebar labels */
+        .sidebar-labels {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            z-index: 10;
+        }
+
+        .sidebar-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: lowercase;
+        }
+
+        /* Dark vertical strip — top edge pushed up to touch the navbar */
+        .dark-strip {
+            position: absolute;
+            width: 420px;
+            height: 120vh;
+            background: var(--dark-strip);
+            left: 50%;
+            top: calc(-1 * var(--nav-height));
+            transform: translateX(-50%);
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        /* Plate image wrapper — sits above the strip */
+        .plate-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Ensure the wrapper is just around the image */
+            pointer-events: none;
+        }
+
+        .plate-img {
+            width: 640px;
+            max-width: 95%;
+            display: block;
+            position: relative;
+            z-index: 3;
+            filter: drop-shadow(0 24px 70px rgba(0, 0, 0, 0.40)) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+            animation: floatPlate 4s ease-in-out infinite;
+            pointer-events: auto;
+        }
+
+        @keyframes floatPlate {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* RIGHT COLUMN */
+        .hero-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 60px 64px 60px 40px;
+        }
+
+        .hero-content {
+            max-width: 460px;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 18px;
+        }
+
+        .hero-heading {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            margin-bottom: 22px;
+        }
+
+        .hero-para {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: #555;
+            max-width: 420px;
+            margin-bottom: 32px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 0;
+        }
+
+        .price-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-amount {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--price-red);
+            line-height: 1;
+        }
+
+        .price-label {
+            font-size: 11px;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        .btn-order {
+            display: inline-block;
+            background: var(--btn-dark);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 8px 24px rgba(22, 163, 74, 0.3);
+        }
+
+        .btn-order:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-video {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.2s;
+        }
+
+        .btn-video:hover {
+            transform: translateY(-2px);
+        }
+
+        .play-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: #f59e0b;
+            font-size: 14px;
+            padding-left: 2px;
+        }
+
+        /* Hero Badges & Reviews */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(22, 163, 74, 0.1);
+            color: #16a34a;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-heading {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .hero-para {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: #555;
+            max-width: 440px;
+            margin-bottom: 36px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .hero-reviews {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar-group img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+            margin-left: -12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-group img:first-child {
+            margin-left: 0;
+        }
+
+        .review-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .review-score {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .review-count {
+            color: #888;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        /* ── WHAT WE SERVE SECTION ── */
+        .feature-section {
+            padding: 100px 48px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            min-height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-content {
+            flex: 1;
+            max-width: 500px;
+            z-index: 2;
+        }
+
+        .feature-heading {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+
+        .feature-heading span {
+            color: #16a34a;
+        }
+
+        .feature-para {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 32px;
+        }
+
+        .feature-image-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .juice-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+            animation: pulseBlob 4s infinite alternate;
+        }
+
+        @keyframes pulseBlob {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .feature-img {
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+            animation: floatPlate 5s ease-in-out infinite reverse;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-icons {
+                margin-left: auto;
+                gap: 16px;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-left: 16px;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: center;
+                min-height: auto;
+                padding-top: var(--nav-height);
+                padding-bottom: 48px;
+            }
+
+            .hero-left {
+                flex: none;
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 10px 0 20px;
+            }
+
+            .dark-strip {
+                width: 200px;
+                height: calc(100% + var(--nav-height));
+                top: calc(-1 * var(--nav-height));
+                transform: translateX(-50%);
+            }
+
+            .plate-img {
+                width: 360px;
+                max-width: 90vw;
+            }
+
+            .sidebar-labels {
+                left: 8px;
+                gap: 20px;
+            }
+
+            .sidebar-label {
+                font-size: 9px;
+            }
+
+            .hero-right {
+                flex: none;
+                width: 100%;
+                padding: 12px 20px 24px;
+                justify-content: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-heading {
+                font-size: 36px;
+            }
+
+            .hero-para {
+                font-size: 14px;
+                max-width: 100%;
+            }
+
+            .price-row {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            /* Mobile logo center */
+            .nav-logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 20px;
+            }
+
+            .hero-actions {
+                align-items: center;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero-reviews {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-section {
+                flex-direction: column;
+                padding: 60px 20px;
+                text-align: center;
+            }
+
+            .feature-heading {
+                font-size: 36px;
+            }
+        }
+
+        /* ── MENU SECTION ── */
+        .menu-section {
+            padding: 80px 48px;
+            background: #fff;
+            position: relative;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .menu-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .menu-subtitle {
+            font-size: 14px;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .menu-sidebar {
+            width: 260px;
+            min-width: 260px;
+            background: #FCE8D3;
+            border-radius: 20px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: fit-content;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #fff;
+            border-radius: 50px;
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .sidebar-item:hover {
+            background: #fdf2e9;
+        }
+
+        .sidebar-item.active {
+            background: #F5A623;
+        }
+
+        .sidebar-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        /* Grid */
+        .menu-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .menu-card {
+            position: relative;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-color: #e0e0e0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-glass {
+            margin: 12px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: #444;
+            text-align: center;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .btn-add {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: capitalize;
+        }
+
+        .btn-add:hover {
+            background: #F5A623;
+            border-color: #F5A623;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-direction: column;
+            }
+
+            .menu-sidebar {
+                width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 16px;
+            }
+
+            .sidebar-item {
+                white-space: nowrap;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* FLIP CARD STYLES */
+        .menu-card {
+            position: relative;
+            height: 320px;
+            border-radius: 20px;
+            perspective: 1000px;
+            background: none !important;
+            /* Disable background on wrapper */
+            box-shadow: none !important;
+        }
+
+        .menu-card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-card:hover .card-inner {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background-color: #e0e0e0;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .card-back {
+            background-color: #fdf2e9;
+            color: #1a1a1a;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            border: 2px solid #F5A623;
+        }
+
+        .card-back h4 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #16a34a;
+            margin-bottom: 20px;
+        }
+
+        .nutrient-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+        }
+
+        .nutrient-row strong {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .btn-flip-back {
+            margin-top: 24px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-flip-back:hover {
+            background: #333;
+        }
+
+        /* END FLIP CARD STYLES */
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #0E1F0E;
+            color: #fff;
+            padding: 64px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #a8d5a2;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .social-link:hover {
+            background: #16a34a;
+        }
+
+        .footer-map {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+            }
+
+            .menu-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#" class="nav-logo">Daily Greens</a>
+
+        <ul class="nav-links">
+            <li><a href="#" class="active" id="nav-shop">Shop</a></li>
+            <li><a href="reviews.html" id="nav-reviews">Reviews</a></li>
+        </ul>
+
+        <!-- Hamburger (mobile) -->
+        <button class="hamburger" aria-label="Open menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" aria-label="Hero">
+
+        <!-- LEFT SIDE -->
+        <div class="hero-left">
+
+            <!-- Vertical sidebar labels -->
+            <div class="sidebar-labels" aria-hidden="true">
+                <span class="sidebar-label">process</span>
+                <span class="sidebar-label">design</span>
+                <span class="sidebar-label">material</span>
+            </div>
+
+            <!-- Dark vertical strip (behind the plate) -->
+            <div class="dark-strip" aria-hidden="true"></div>
+
+            <!-- Plate image (on top of strip) -->
+            <div class="plate-wrapper">
+                <img src="hero.png" alt="Fresh healthy salad bowl" class="plate-img" id="hero-plate" />
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="hero-right">
+            <div class="hero-content">
+                <div class="hero-badge"> Welcome to Daily Greens</div>
+
+                <h1 class="hero-heading">Where Health<br>Brings Precious<br>Memories</h1>
+
+                <p class="hero-para">
+                    Are you someone who enjoys great food? If so, welcome to Daily Greens, where we serve up delectable,
+                    nutrient-rich dishes crafted especially for you.
+                </p>
+
+                <div class="hero-actions">
+                    <div class="action-buttons">
+                        <a href="#menu-section" class="btn-order" id="explore-btn">Explore Menu</a>
+                        <a href="reviews.html" class="btn-video" id="video-btn" style="text-decoration: none;">
+                            <span class="play-icon">▶</span> Watch Video
+                        </a>
+                    </div>
+
+                    <div class="hero-reviews">
+                        <div class="avatar-group">
+                            <img src="https://i.pravatar.cc/100?img=44" alt="User 1">
+                            <img src="https://i.pravatar.cc/100?img=45" alt="User 2">
+                            <img src="https://i.pravatar.cc/100?img=47" alt="User 3">
+                        </div>
+                        <div class="review-text">
+                            <span class="review-title">Our Happy Guests</span>
+                            <span class="review-score">
+                                <span style="display:flex; align-items:center; gap:4px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#facc15" stroke="none">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    4.6 <span class="review-count">(231 Reviews)</span>
+                                </span>
+                                <a href="https://www.zomato.com/pune/daily-greens-kothrud" target="_blank"
+                                    style="margin-left: 12px; display: inline-flex; align-items: center; border-radius: 50%; transition: transform 0.2s;"
+                                    class="zomato-hero-btn">
+                                    <img src="z.png" alt="Zomato"
+                                        style="height: 36px; width: 36px; border-radius: 50%; box-shadow: 0 4px 12px rgba(226, 55, 68, 0.4); border: 2px solid white; object-fit: cover;">
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FULL MENU SECTION -->
+    <section class="menu-section" id="menu-section">
+        <div class="menu-header">
+            <h2 class="menu-title">What We Are Offering<br>To Our Clients</h2>
+            <p class="menu-subtitle">Explore a world of culinary delights tailored just for you. From mouthwatering
+                appetizers to indulgent desserts, we offer a diverse array of dishes crafted with care and creativity.
+            </p>
+        </div>
+
+        <div class="menu-container">
+            <!-- Sidebar Categories -->
+            <div class="menu-sidebar">
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🍽️</div>
+                    Dishes
+                </div>
+                <div class="sidebar-item active">
+                    <div class="sidebar-icon">🥗</div>
+                    Salads
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🥟</div>
+                    Appetizers
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🥣</div>
+                    Soups
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🍰</div>
+                    Desserts
+                </div>
+            </div>
+
+            <!-- Grid Items -->
+            <div class="menu-grid">
+
+                <!-- Card 1 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('hero.png'); background-position: left center;">
+                            <div class="card-glass">
+                                <div class="card-title">Caesar Salad</div>
+                                <div class="card-desc">Caesar Salad is a classic dish originating from Italy.</div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$15.35</span>
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Caesar Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>420 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>14g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>25g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>22g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Greek Salad</div>
+                                <div class="card-desc">Greek Salad is a refreshing dish featuring crisp lettuce,
+                                    tomatoes.</div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$16.55</span>
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Greek Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>350 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>12g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>18g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>28g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Cobb Salad</div>
+                                <div class="card-desc">Cobb Salad is a hearty and flavorful dish.</div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$13.45</span>
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Cobb Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>520 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>28g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>15g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>42g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=400'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Caprese Salad</div>
+                                <div class="card-desc">Caprese Salad is a simple yet elegant dish featuring slices.
+                                </div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$14.65</span>
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Caprese Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>380 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>18g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>10g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>32g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('hero.png'); background-position: right center;">
+                            <div class="card-glass"
+                                style="background: rgba(245, 166, 35, 0.85); border-color: transparent;">
+                                <div class="card-title">Waldorf Salad</div>
+                                <div class="card-desc">Waldorf Salad is a classic dish composed of crisp apples.</div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$17.35</span>
+                                    <button class="btn-add"
+                                        style="background:#F5A623; border:none; color:#1a1a1a;">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Waldorf Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>450 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>8g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>36g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>34g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=400'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Spinach Salad</div>
+                                <div class="card-desc">Spinach Salad is a vibrant dish featuring tender baby spinach.
+                                </div>
+                                <div class="card-bottom">
+                                    <span class="card-price">$17.45</span>
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Spinach Salad</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>290 kcal</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>12g</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>14g</strong></div>
+                            <div class="nutrient-row"><span>Fat</span> <strong>22g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-info">
+            <h3>Daily Greens</h3>
+            <p>123 Fresh Lane, Kothrud<br>Pune, Maharashtra 411038</p>
+            <p>Email: hello@dailygreens.in<br>Phone: +91 98765 43210</p>
+
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/dailygreensindia/" target="_blank" class="social-link"
+                    aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/people/Daily-Greens/61564835049072/" target="_blank"
+                    class="social-link" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.zomato.com/pune/daily-greens-kothrud" target="_blank" class="social-link"
+                    aria-label="Zomato">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3h18v18H3z"></path>
+                        <path d="M8 8l8 8"></path>
+                        <path d="M16 8l-8 8"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-map">
+            <!-- Google Maps Embed for Kothrud, Pune -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5674069796025!2d73.80529817604314!3d18.503254170390145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfb8d0000001%3A0x1d11340b15c71b69!2sKothrud%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+
+</body>
+
+</html>
