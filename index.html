@@ -22,7 +22,7 @@
 
         :root {
             --bg: #f4f4f4;
-            --dark-strip: #0E1F0E;
+            --dark-strip: #0f300f;
             --btn-dark: #16a34a;
             --price-red: #ff4d4d;
             --nav-height: 80px;
@@ -32,7 +32,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg);
-            color: #1a1a1a;
+            color: #023d02;
             overflow-x: hidden;
         }
 
@@ -44,7 +44,7 @@
             right: 0;
             z-index: 100;
             height: var(--nav-height);
-            background: #0E1F0E;
+            background: #023d02;
             display: flex;
             align-items: center;
             padding: 0 48px;
@@ -545,23 +545,26 @@
             .hero {
                 flex-direction: column;
                 align-items: center;
-                min-height: auto;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 0;
                 padding-top: var(--nav-height);
-                padding-bottom: 48px;
+                /* Offset for fixed nav */
             }
 
             .hero-left {
-                flex: none;
+                flex: 1;
                 width: 100%;
+                height: 100vh;
                 display: flex;
-                align-items: flex-start;
+                align-items: center;
                 justify-content: center;
-                padding: 10px 0 20px;
+                padding: 0;
             }
 
             .dark-strip {
                 width: 200px;
-                height: calc(100% + var(--nav-height));
+                height: 120vh;
                 top: calc(-1 * var(--nav-height));
                 transform: translateX(-50%);
             }
@@ -581,10 +584,7 @@
             }
 
             .hero-right {
-                flex: none;
-                width: 100%;
-                padding: 12px 20px 24px;
-                justify-content: center;
+                display: none;
             }
 
             .hero-content {
@@ -824,14 +824,25 @@
                 flex-direction: row;
                 overflow-x: auto;
                 padding: 16px;
+                gap: 8px;
+                /* Reduce gap on mobile */
             }
 
             .sidebar-item {
                 white-space: nowrap;
+                padding: 8px 12px;
+                /* Smaller pills */
+                font-size: 13px;
+            }
+
+            .sidebar-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
             }
 
             .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
@@ -867,6 +878,7 @@
             transform-style: preserve-3d;
             border-radius: 20px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            will-change: transform;
         }
 
         .menu-card:hover .card-inner {
