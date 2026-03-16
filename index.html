@@ -22,7 +22,7 @@
 
         :root {
             --bg: #f4f4f4;
-            --dark-strip: #023d02;
+            --dark-strip: #012d01;
             --btn-dark: #16a34a;
             --price-red: #ff4d4d;
             --nav-height: 80px;
@@ -32,7 +32,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg);
-            color: #023d02;
+            color: #012d01;
             overflow-x: hidden;
         }
 
@@ -44,7 +44,7 @@
             right: 0;
             z-index: 100;
             height: var(--nav-height);
-            background: #023d02;
+            background: #012d01;
             display: flex;
             align-items: center;
             padding: 0 48px;
@@ -57,6 +57,51 @@
             color: #ffffff;
             text-decoration: none;
             flex: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--dark-strip);
+            z-index: 1000;
+            padding: 100px 40px;
+            transition: 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
         }
 
         .nav-links {
@@ -139,7 +184,6 @@
         /* ── HERO SECTION ── */
         .hero {
             min-height: 100vh;
-            padding-top: var(--nav-height);
             background: var(--bg);
             display: flex;
             align-items: stretch;
@@ -152,9 +196,8 @@
             flex: 0 0 55%;
             position: relative;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            padding-top: 20px;
             /* Create stacking context so strip and plate both live here */
             isolation: isolate;
         }
@@ -186,10 +229,10 @@
         .dark-strip {
             position: absolute;
             width: 420px;
-            height: 120vh;
+            height: 100vh;
             background: var(--dark-strip);
             left: 50%;
-            top: calc(-1 * var(--nav-height));
+            top: 0;
             transform: translateX(-50%);
             z-index: 1;
             border-radius: 2px;
@@ -199,14 +242,15 @@
         .plate-wrapper {
             position: relative;
             z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             /* Ensure the wrapper is just around the image */
             pointer-events: none;
+            transform: translateY(-140px);
         }
 
         .plate-img {
+            grid-area: 1 / 1;
             width: 640px;
             max-width: 95%;
             display: block;
@@ -215,6 +259,30 @@
             filter: drop-shadow(0 24px 70px rgba(0, 0, 0, 0.40)) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
             animation: floatPlate 4s ease-in-out infinite;
             pointer-events: auto;
+        }
+
+        /* Intro Animation */
+        .intro-logo {
+            z-index: 5;
+            animation: floatPlate 4s ease-in-out infinite, introFadeOut 0.8s forwards 2s;
+        }
+
+        .intro-hero {
+            opacity: 0;
+            animation: floatPlate 4s ease-in-out infinite, introFadeIn 0.8s forwards 2s;
+        }
+
+        @keyframes introFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes introFadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
 
         @keyframes floatPlate {
@@ -569,6 +637,10 @@
                 transform: translateX(-50%);
             }
 
+            .plate-wrapper {
+                transform: translateY(0);
+            }
+
             .plate-img {
                 width: 360px;
                 max-width: 90vw;
@@ -785,9 +857,7 @@
         }
 
         .card-price {
-            font-size: 16px;
-            font-weight: 800;
-            color: #1a1a1a;
+            display: none;
         }
 
         .btn-add {
@@ -1023,6 +1093,14 @@
             .menu-section {
                 padding: 60px 20px;
             }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1034,8 +1112,10 @@
         <a href="#" class="nav-logo">Daily Greens</a>
 
         <ul class="nav-links">
-            <li><a href="#" class="active" id="nav-shop">Shop</a></li>
-            <li><a href="reviews.html" id="nav-reviews">Reviews</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="#">Shop</a></li>
         </ul>
 
         <!-- Hamburger (mobile) -->
@@ -1045,6 +1125,13 @@
             <span></span>
         </button>
     </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html" class="active">Home</a>
+        <a href="story.html">Our Story</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="#">Shop</a>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="hero" aria-label="Hero">
@@ -1064,7 +1151,9 @@
 
             <!-- Plate image (on top of strip) -->
             <div class="plate-wrapper">
-                <img src="hero.png" alt="Fresh healthy salad bowl" class="plate-img" id="hero-plate" />
+                <!-- Smooth transition: logo shows for 2s, then hero fades in -->
+                <img src="logo.png" class="plate-img intro-logo" alt="Daily Greens Logo" />
+                <img src="hero.png" alt="Fresh healthy salad bowl" class="plate-img intro-hero" id="hero-plate" />
             </div>
         </div>
 
@@ -1150,6 +1239,10 @@
                 <div class="sidebar-item">
                     <div class="sidebar-icon">🍰</div>
                     Desserts
+                </div>
+                <div class="sidebar-item">
+                    <div class="sidebar-icon">🍹</div>
+                    Beverages
                 </div>
             </div>
 
@@ -1295,7 +1388,6 @@
                                 <div class="card-desc">Spinach Salad is a vibrant dish featuring tender baby spinach.
                                 </div>
                                 <div class="card-bottom">
-                                    <span class="card-price">$17.45</span>
                                     <button class="btn-add">Nutrients</button>
                                 </div>
                             </div>
@@ -1306,6 +1398,54 @@
                             <div class="nutrient-row"><span>Protein</span> <strong>12g</strong></div>
                             <div class="nutrient-row"><span>Carbs</span> <strong>14g</strong></div>
                             <div class="nutrient-row"><span>Fat</span> <strong>22g</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverages 1 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('orange_juice_4k.png'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Fresh Orange Juice</div>
+                                <div class="card-desc">Chilled, freshly squeezed oranges with natural pulp.</div>
+                                <div class="card-bottom">
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Orange Juice</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>120 kcal</strong></div>
+                            <div class="nutrient-row"><span>Vitamin C</span> <strong>120% DV</strong></div>
+                            <div class="nutrient-row"><span>Carbs</span> <strong>28g</strong></div>
+                            <div class="nutrient-row"><span>Sugar</span> <strong>Natural</strong></div>
+                            <button class="btn-flip-back">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverages 2 -->
+                <div class="menu-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front"
+                            style="background-image: url('story_hero_4k.png'); background-position: center;">
+                            <div class="card-glass">
+                                <div class="card-title">Green Power Smoothie</div>
+                                <div class="card-desc">Kale, spinach, green apple, and a hint of lemon.</div>
+                                <div class="card-bottom">
+                                    <button class="btn-add">Nutrients</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Green Power</h4>
+                            <div class="nutrient-row"><span>Calories</span> <strong>180 kcal</strong></div>
+                            <div class="nutrient-row"><span>Iron</span> <strong>15% DV</strong></div>
+                            <div class="nutrient-row"><span>Fiber</span> <strong>8g</strong></div>
+                            <div class="nutrient-row"><span>Protein</span> <strong>4g</strong></div>
                             <button class="btn-flip-back">Back</button>
                         </div>
                     </div>
@@ -1359,6 +1499,24 @@
         </div>
     </footer>
 
+    <script>
+        // Mobile Sidebar
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>

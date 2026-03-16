@@ -93,6 +93,33 @@
             border-radius: 50%;
         }
 
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: #0E1F0E;
+            z-index: 1000;
+            padding: 100px 40px;
+            transition: 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -277,6 +304,10 @@
                 grid-template-columns: 1fr;
                 padding: 40px 20px;
             }
+
+            .hamburger {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -288,11 +319,10 @@
         <a href="index.html" class="nav-logo">Daily Greens</a>
 
         <ul class="nav-links">
-            <li><a href="index.html" id="nav-shop">Shop</a></li>
-            <li><a href="#" id="nav-features">Features</a></li>
-            <li><a href="#" id="nav-recipes">Recipes</a></li>
-            <li><a href="reviews.html" class="active" id="nav-reviews">Reviews</a></li>
-            <li><a href="#" id="nav-hotline">Hotline</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="reviews.html" class="active">Reviews</a></li>
+            <li><a href="#">Shop</a></li>
         </ul>
 
         <!-- Hamburger (mobile) -->
@@ -302,6 +332,13 @@
             <span></span>
         </button>
     </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="story.html">Our Story</a>
+        <a href="reviews.html" class="active">Reviews</a>
+        <a href="#">Shop</a>
+    </div>
 
     <!-- REVIEWS SECTION -->
     <section class="reviews-section">
@@ -388,6 +425,22 @@
         </div>
     </footer>
 
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>

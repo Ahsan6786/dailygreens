@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Daily Greens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f4f4;
+            --dark-green: #012d01;
+            --accent-green: #16a34a;
+            --text-muted: #555;
+            --nav-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--dark-green);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: var(--nav-height);
+            background: var(--dark-green);
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+        }
+
+        .nav-logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a.active {
+            color: #a8d5a2;
+            font-weight: 600;
+        }
+
+        /* ── HERO ── */
+        .story-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('story_hero_4k.png');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.1);
+            transition: transform 1.5s ease-out;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-pretitle {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.5s;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 100px);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.8s;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            padding: 120px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── PHILOSOPHY ── */
+        .philosophy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .phi-title {
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .phi-text {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .accent-box {
+            background: var(--dark-green);
+            color: #fff;
+            padding: 60px;
+            border-radius: 40px;
+            position: relative;
+        }
+
+        .accent-box::after {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 120px;
+            font-family: serif;
+            opacity: 0.1;
+            line-height: 1;
+        }
+
+        /* ── PROCESS ── */
+        .process-title {
+            text-align: center;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            margin-bottom: 80px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .process-img-wrap {
+            border-radius: 30px;
+            overflow: hidden;
+            height: 450px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .process-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .process-img-wrap:hover img {
+            transform: scale(1.05);
+        }
+
+        .process-step-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* ── VISION ── */
+        .vision-section {
+            background: #fff;
+            padding: 120px 48px;
+            text-align: center;
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            border-radius: 50px;
+            margin-bottom: 60px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--dark-green);
+            color: #fff;
+            padding: 100px 48px 40px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 4px;
+                z-index: 101;
+            }
+
+            .hamburger span {
+                width: 24px;
+                height: 2px;
+                background: #fff;
+                transition: 0.3s;
+            }
+
+            /* ── SIDEBAR ── */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--dark-green);
+                z-index: 1000;
+                padding: 100px 40px;
+                transition: 0.5s ease-in-out;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .sidebar.active {
+                right: 0;
+            }
+
+            .sidebar a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .section {
+                padding: 60px 24px;
+            }
+
+            .philosophy {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .accent-box {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Daily Greens</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="story.html" class="active">Our Story</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="#">Shop</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="story.html" class="active">Our Story</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="#">Shop</a>
+    </div>
+
+    <header class="story-hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content">
+            <span class="hero-pretitle">Sown with intention</span>
+            <h1 class="hero-title">From the Earth,<br>For Your Soul.</h1>
+        </div>
+    </header>
+
+    <section class="section philosophy reveal">
+        <div class="phi-content">
+            <h2 class="phi-title">More Than Just<br>Greens.</h2>
+            <p class="phi-text">We believe that what we consume is the foundation of who we become. At Daily Greens, we
+                don't just prepare salads; we curate nutrients, flavors, and memories.</p>
+            <p class="phi-text">Our journey began with a simple question: Why should healthy food be a compromise? We
+                set out to prove that nature's bounty, treated with respect and creativity, can be the most luxurious
+                experience of your day.</p>
+        </div>
+        <div class="phi-accent">
+            <div class="accent-box">
+                <p style="font-size: 24px; font-weight: 500; font-style: italic;">"Our roots go deep into the soil of
+                    Pune, bringing a heritage of freshness to the modern plate."</p>
+                <p style="margin-top: 24px; opacity: 0.7; font-size: 14px;">— The Daily Greens Philosophy</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <h2 class="process-title">The Journey</h2>
+        <div class="process-grid">
+            <div class="process-item">
+                <div class="process-img-wrap">
+                    <img src="story_hero.png" alt="Morning Farm">
+                </div>
+                <h3 class="process-step-title">01. The Morning Harvest</h3>
+                <p class="phi-text">Every day begins at dawn. We hand-select the most vibrant greens when they are at
+                    their peak nutrient density.</p>
+            </div>
+            <div class="process-item">
+                <div class="process-img-wrap">
+                    <img src="story_process_4k.png" alt="Fresh Produce">
+                </div>
+                <h3 class="process-step-title">02. Minimalist Magic</h3>
+                <p class="phi-text">We believe in letting ingredients speak for themselves. Small-batch prep ensures
+                    crunch and character in every bite.</p>
+            </div>
+            <div class="process-item">
+                <div class="process-img-wrap">
+                    <img src="hero.png" alt="Finished Dish">
+                </div>
+                <h3 class="process-step-title">03. The Final Plate</h3>
+                <p class="phi-text">A masterpiece of minerals. Served with dressings made from scratch and a side of
+                    passion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-section reveal">
+        <div class="vision-content">
+            <img src="story_vision.png" alt="Community Meal" class="vision-img">
+            <h2 class="phi-title">A Community Cultivated</h2>
+            <p class="phi-text" style="max-width: 600px; margin: 0 auto 40px;">Daily Greens is more than a culinary
+                destination; it's a movement towards mindful living. We invite you to sit at our table and join the
+                conversation.</p>
+            <a href="index.html"
+                style="display: inline-block; padding: 18px 48px; background: var(--accent-green); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; transition: transform 0.3s;">Explore
+                the Menu</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span class="footer-logo">Daily Greens</span>
+        <p style="opacity: 0.6; font-size: 14px; letter-spacing: 2px;">EST. 2024 • PUNE, MAHARASHTRA</p>
+        <div
+            style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; font-size: 12px; opacity: 0.5;">
+            © 2026 Daily Greens. Crafted for your health.
+        </div>
+    </footer>
+
+    <script>
+        // Hero Parallax
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.getElementById('heroBg');
+            heroBg.style.transform = `scale(1.1) translateY(${scrolled * 0.4}px)`;
+        });
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Sidebar
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
