@@ -22,7 +22,7 @@ export function Hero() {
         <motion.div 
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
-          transition={{ duration: 1.2, ease: "circOut" }}
+          transition={{ type: "spring", stiffness: 50, damping: 20, delay: 0.2 }}
           className="absolute w-[240px] xs:w-[280px] md:w-[450px] h-full bg-[#032403] left-1/2 -translate-x-1/2 z-0 origin-top shadow-3xl"
         />
         
@@ -30,7 +30,7 @@ export function Hero() {
         <motion.div
            initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-           transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+           transition={{ type: "spring", stiffness: 60, damping: 15, delay: 0.6 }}
            className="relative z-10 w-[320px] md:w-[650px] aspect-square"
         >
           <motion.div
@@ -52,27 +52,48 @@ export function Hero() {
       {/* Content Column: Text & CTA - Below visual on Mobile, Right Column on Desktop */}
       <div className="relative flex-1 flex items-center px-8 md:px-24 py-24 md:py-0 order-2 md:order-none bg-[#fdfaf6] z-10 md:z-auto min-h-screen md:min-h-0">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          transition={{ delay: 0.7, duration: 0.8 }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.8
+              }
+            }
+          }}
           className="max-w-xl text-center md:text-left"
         >
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-green-100 text-green-700 text-[10px] font-black tracking-widest uppercase mb-10 mx-auto md:mx-0">
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-green-100 text-green-700 text-[10px] font-black tracking-widest uppercase mb-10 mx-auto md:mx-0"
+          >
             <Star className="w-3 h-3 fill-current" />
             Voted #1 Healthy Spot in Pune
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.05] mb-8 tracking-tighter">
+          <motion.h1 
+            variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+            className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.05] mb-8 tracking-tighter"
+          >
             EAT FRESH,<br />
             <span className="text-green-600 italic decoration-8 underline-offset-[12px]">LIVE BETTER.</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-12 max-w-md mx-auto md:mx-0 font-medium opacity-80">
+          <motion.p 
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            className="text-slate-600 text-lg md:text-xl leading-relaxed mb-12 max-w-md mx-auto md:mx-0 font-medium opacity-80"
+          >
             Experience the fusion of organic purity and culinary artistic design. Sustainable bowls for the modern mind.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-8 justify-center md:justify-start">
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            className="flex flex-col sm:flex-row items-center gap-8 justify-center md:justify-start"
+          >
             <motion.button 
               whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(22, 163, 74, 0.4)" }}
               whileTap={{ scale: 0.95 }}
@@ -80,7 +101,7 @@ export function Hero() {
             >
               Explore Menu
             </motion.button>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -29,20 +29,39 @@ export function Membership() {
   return (
     <section id="membership" className="py-32 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.1 }
+            }
+          }}
+          className="text-center mb-20"
+        >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
             className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-green-50  text-green-700  text-[10px] font-black uppercase tracking-[3px] mb-6 border border-green-600/10"
           >
             <ShieldCheck className="w-4 h-4" />
             Verified Elite Access
           </motion.div>
-          <h2 className="text-4xl md:text-7xl font-black text-slate-900  mb-6 tracking-tighter uppercase leading-none">
+          <motion.h2 
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            className="text-4xl md:text-7xl font-black text-slate-900  mb-6 tracking-tighter uppercase leading-none"
+          >
             Daily Greens <br /> <span className="text-green-600  italic">Privilege</span>
-          </h2>
-          <p className="text-slate-500  font-medium max-w-xl mx-auto">Join the most exclusive healthy living community in Pune. Elevate your lifestyle with unparalleled benefits.</p>
-        </div>
+          </motion.h2>
+          <motion.p 
+            variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+            className="text-slate-500  font-medium max-w-xl mx-auto"
+          >
+            Join the most exclusive healthy living community in Pune. Elevate your lifestyle with unparalleled benefits.
+          </motion.p>
+        </motion.div>
 
         {/* Premium Card with Tilt - Forced Desktop Fidelity on Mobile */}
         <div className="flex justify-center items-center perspective-[1500px] w-full min-h-[300px] md:min-h-[500px] overflow-visible">
@@ -52,10 +71,10 @@ export function Membership() {
               onMouseLeave={handleMouseLeave}
               onMouseEnter={() => setIsHovered(true)}
               style={{ rotateX, rotateY }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ type: "spring", stiffness: 40, damping: 15, delay: 0.2 }}
               className="relative w-[672px] aspect-[1.6/1] rounded-[56px] p-12 overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)]  group cursor-none transform-gpu"
             >
               {/* Base Materials */}
