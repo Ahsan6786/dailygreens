@@ -25,11 +25,11 @@ export function BuildYourBowl() {
   const isComplete = selection.base && selection.protein && selection.gravy;
 
   return (
-    <section id="build-bowl" className="py-24 px-6 md:px-12 bg-white dark:bg-[#0b0f0b]">
+    <section id="build-bowl" className="py-24 px-6 md:px-12 bg-white ">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">Build Your Own Bowl</h2>
-          <p className="text-slate-600 dark:text-slate-400">Create your masterpiece. Choose your base, protein, and gravy.</p>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900  mb-4">Build Your Own Bowl</h2>
+          <p className="text-slate-600 ">Create your masterpiece. Choose your base, protein, and gravy.</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -46,7 +46,7 @@ export function BuildYourBowl() {
                       className={`px-8 py-4 rounded-2xl font-bold transition-all border-2 ${
                         selection[type as keyof typeof selection] === opt
                           ? "bg-green-600 text-white border-green-600 shadow-xl shadow-green-600/20 scale-105"
-                          : "bg-transparent border-slate-100 dark:border-white/5 text-slate-500 hover:border-green-600/20"
+                          : "bg-transparent border-slate-100  text-slate-500 hover:border-green-600/20"
                       }`}
                     >
                       {opt}
@@ -59,7 +59,7 @@ export function BuildYourBowl() {
 
           {/* Visualizer */}
           <div className="flex-1 w-full max-w-md">
-            <div className="relative aspect-square bg-[#fdfaf6] dark:bg-white/5 rounded-[40px] md:rounded-[60px] p-8 md:p-12 flex flex-col items-center justify-end border border-black/5 dark:border-white/5 overflow-hidden">
+            <div className="relative aspect-square bg-[#fdfaf6]  rounded-[40px] md:rounded-[60px] p-8 md:p-12 flex flex-col items-center justify-end border border-black/5  overflow-hidden">
                 {/* Bowl Layers */}
                 <div className="w-full relative h-[300px] flex flex-col justify-end items-center">
                     <AnimatePresence>
@@ -91,19 +91,19 @@ export function BuildYourBowl() {
                             />
                         )}
                     </AnimatePresence>
-                    <div className="absolute inset-0 border-b-[20px] border-black/5 dark:border-white/10 rounded-b-[100px]" />
+                    <div className="absolute inset-0 border-b-[20px] border-black/5  rounded-b-[100px]" />
                 </div>
 
                 <div className="mt-8 md:mt-12 text-center w-full">
                     <p className="text-[10px] font-black uppercase tracking-[3px] text-slate-400 mb-2">Current Selection</p>
-                    <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white h-auto min-h-[2rem]">
+                    <h3 className="text-lg md:text-2xl font-black text-slate-900  h-auto min-h-[2rem]">
                         {Object.values(selection).filter(Boolean).join(" + ") || "Start Selecting..."}
                     </h3>
                     <motion.button
                       disabled={!isComplete}
                       whileHover={isComplete ? { scale: 1.02 } : {}}
                       className={`w-full mt-8 py-5 rounded-3xl font-bold transition-all ${
-                        isComplete ? "bg-green-600 text-white shadow-2xl shadow-green-600/30" : "bg-slate-100 dark:bg-white/5 text-slate-400 grayscale"
+                        isComplete ? "bg-green-600 text-white shadow-2xl shadow-green-600/30" : "bg-slate-100  text-slate-400 grayscale"
                       }`}
                     >
                       {isComplete ? "Add to Order" : "Complete Your Selection"}

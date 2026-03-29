@@ -40,14 +40,14 @@ const plans = [
 
 export function Subscriptions() {
   return (
-    <section id="subscriptions" className="py-24 px-6 md:px-12 bg-[#fdfaf6] dark:bg-[#0b0f0b] transition-colors duration-500 overflow-hidden relative">
+    <section id="subscriptions" className="py-24 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-hidden relative">
       {/* Texture background overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-4 tracking-tighter">Subscription Plans</h2>
-          <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-medium">Consistent healthy eating, simplified. Delivered to your doorstep.</p>
+          <h2 className="text-5xl md:text-6xl font-black text-slate-900  mb-4 tracking-tighter">Subscription Plans</h2>
+          <p className="text-slate-500  max-w-2xl mx-auto font-medium">Consistent healthy eating, simplified. Delivered to your doorstep.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
@@ -59,7 +59,7 @@ export function Subscriptions() {
               whileHover={{ y: -12, transition: { duration: 0.4, ease: "easeOut" } }}
               transition={{ delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="flex flex-col rounded-[48px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] group h-full border border-black/[0.03] dark:border-white/[0.03]"
+              className="flex flex-col rounded-[48px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)]  group h-full border border-black/[0.03] "
             >
               {/* Top Colored Band - Enhanced Gradients */}
               <div 

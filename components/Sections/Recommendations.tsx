@@ -11,7 +11,7 @@ const items = [
 
 export function Recommendations() {
   return (
-    <section id="recommendations" className="py-24 px-6 md:px-12 bg-white dark:bg-[#0b0f0b]">
+    <section id="recommendations" className="py-24 px-6 md:px-12 bg-white ">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -19,8 +19,8 @@ export function Recommendations() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">Chef's Recommendations</h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900  mb-4">Chef's Recommendations</h2>
+          <p className="text-slate-600  max-w-2xl mx-auto">
             Specially curated dishes that define our culinary philosophy. Taste the freshness in every bite.
           </p>
         </motion.div>
@@ -37,7 +37,7 @@ export function Recommendations() {
               className="group cursor-pointer"
             >
               <div className="relative aspect-square rounded-[40px] overflow-hidden mb-6 shadow-2xl shadow-black/10">
-                <div className="absolute top-6 left-6 z-10 bg-white/90 dark:bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase text-green-700 dark:text-green-400 shadow-lg border border-green-600/10">
+                <div className="absolute top-6 left-6 z-10 bg-white/90  backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase text-green-700  shadow-lg border border-green-600/10">
                   {item.tag}
                 </div>
                 <Image 
@@ -48,8 +48,8 @@ export function Recommendations() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 ml-2">{item.name}</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm ml-2">Organic • Freshly Sourced • Pune Local</p>
+              <h3 className="text-2xl font-bold text-slate-900  mb-2 ml-2">{item.name}</h3>
+              <p className="text-slate-500  text-sm ml-2">Organic • Freshly Sourced • Pune Local</p>
             </motion.div>
           ))}
         </div>

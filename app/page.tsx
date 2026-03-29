@@ -15,7 +15,7 @@ import { Footer } from "@/components/Sections/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0b0f0b] transition-colors duration-500">
+    <main className="min-h-screen bg-white  transition-colors duration-500">
       <Navbar />
       <Hero />
       <Recommendations />

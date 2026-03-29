@@ -23,7 +23,7 @@ const usps = [
 
 export function Features() {
   return (
-    <section id="features" className="py-24 px-6 md:px-12 bg-white dark:bg-[#0b0f0b]">
+    <section id="features" className="py-24 px-6 md:px-12 bg-white ">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {usps.map((usp, i) => (
@@ -33,13 +33,13 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="p-12 rounded-[50px] bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-green-600/20 dark:hover:border-green-400/20 transition-all group"
+              className="p-12 rounded-[50px] bg-slate-50  border border-slate-100  hover:border-green-600/20  transition-all group"
             >
               <div className="w-20 h-20 rounded-3xl bg-green-600 text-white flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                 <usp.icon className="w-10 h-10" />
               </div>
-              <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tight">{usp.title}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
+              <h3 className="text-3xl font-black text-slate-900  mb-6 uppercase tracking-tight">{usp.title}</h3>
+              <p className="text-slate-600  leading-relaxed text-lg">
                 {usp.desc}
               </p>
             </motion.div>

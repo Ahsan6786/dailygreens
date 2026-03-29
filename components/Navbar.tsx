@@ -16,7 +16,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 dark:bg-[#0b0f0b]/90 backdrop-blur-md border-b border-black/5 dark:border-white/5 transition-colors duration-500">
+    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-black/5 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div className="md:hidden flex items-center justify-between w-full px-4">
           <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900 p-2">
@@ -41,7 +41,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[11px] font-black tracking-[2px] text-slate-500 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors uppercase"
+                className="text-[11px] font-black tracking-[2px] text-slate-500 hover:text-green-600 transition-colors uppercase"
               >
                 {link.name}
               </a>
@@ -63,13 +63,13 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-[#0b0f0b] border-b border-black/5 dark:border-white/5 p-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
+        <div className="md:hidden bg-white border-b border-black/5 p-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-lg font-black tracking-widest text-slate-900 dark:text-white uppercase"
+              className="text-lg font-black tracking-widest text-slate-900 uppercase"
             >
               {link.name}
             </a>

@@ -27,21 +27,21 @@ export function Membership() {
   }
 
   return (
-    <section id="membership" className="py-32 px-6 md:px-12 bg-[#fdfaf6] dark:bg-[#0b0f0b] transition-colors duration-500 overflow-hidden relative">
+    <section id="membership" className="py-32 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[10px] font-black uppercase tracking-[3px] mb-6 border border-green-600/10"
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-green-50  text-green-700  text-[10px] font-black uppercase tracking-[3px] mb-6 border border-green-600/10"
           >
             <ShieldCheck className="w-4 h-4" />
             Verified Elite Access
           </motion.div>
-          <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter uppercase leading-none">
-            Daily Greens <br /> <span className="text-green-600 dark:text-green-500 italic">Privilege</span>
+          <h2 className="text-4xl md:text-7xl font-black text-slate-900  mb-6 tracking-tighter uppercase leading-none">
+            Daily Greens <br /> <span className="text-green-600  italic">Privilege</span>
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 font-medium max-w-xl mx-auto">Join the most exclusive healthy living community in Pune. Elevate your lifestyle with unparalleled benefits.</p>
+          <p className="text-slate-500  font-medium max-w-xl mx-auto">Join the most exclusive healthy living community in Pune. Elevate your lifestyle with unparalleled benefits.</p>
         </div>
 
         {/* Premium Card with Tilt - Forced Desktop Fidelity on Mobile */}
@@ -56,10 +56,10 @@ export function Membership() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative w-[672px] aspect-[1.6/1] rounded-[56px] p-12 overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)] dark:shadow-[0_60px_120px_-30px_rgba(0,0,0,0.7)] group cursor-none transform-gpu"
+              className="relative w-[672px] aspect-[1.6/1] rounded-[56px] p-12 overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)]  group cursor-none transform-gpu"
             >
               {/* Base Materials */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#121c15] via-[#0b160f] to-[#040805] dark:from-[#08120a] dark:to-black" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#121c15] via-[#0b160f] to-[#040805]  " />
               <div className="absolute inset-0 opacity-15 mix-blend-color-dodge bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
               
               {/* Holographic Gradients */}
@@ -156,13 +156,13 @@ export function Membership() {
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.6 + i * 0.1 }}
-               className="p-10 rounded-[40px] bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-green-600/20 transition-all flex flex-col items-center text-center group"
+               className="p-10 rounded-[40px] bg-white  border border-black/5  hover:border-green-600/20 transition-all flex flex-col items-center text-center group"
              >
-                <div className="w-12 h-12 rounded-2xl bg-green-50 dark:bg-green-900/10 flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all">
+                <div className="w-12 h-12 rounded-2xl bg-green-50  flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all">
                    <Zap className="w-5 h-5" />
                 </div>
-                <h4 className="text-lg font-black text-slate-900 dark:text-white mb-2 uppercase tracking-tight">{item.title}</h4>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
+                <h4 className="text-lg font-black text-slate-900  mb-2 uppercase tracking-tight">{item.title}</h4>
+                <p className="text-sm text-slate-500  leading-relaxed">{item.desc}</p>
              </motion.div>
           ))}
         </div>

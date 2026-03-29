@@ -25,17 +25,17 @@ export function Menu() {
   });
 
   return (
-    <section id="menu" className="py-24 px-6 md:px-12 bg-[#fdfaf6] dark:bg-[#051a05] transition-colors duration-500">
+    <section id="menu" className="py-24 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">Explore Our Menu</h2>
-          <p className="text-slate-600 dark:text-slate-400">A symphony of flavors crafted for your wellbeing.</p>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900  mb-4">Explore Our Menu</h2>
+          <p className="text-slate-600 ">A symphony of flavors crafted for your wellbeing.</p>
         </div>
 
         {/* Tabs & Filters */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-16">
           <div className="w-full lg:w-auto overflow-x-auto pb-4 lg:pb-0 no-scrollbar">
-            <div className="flex bg-white/50 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-2xl shadow-2xl border border-black/5 dark:border-white/5 min-w-max">
+            <div className="flex bg-white/50  backdrop-blur-xl p-1.5 rounded-2xl shadow-2xl border border-black/5  min-w-max">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -43,7 +43,7 @@ export function Menu() {
                   className={`px-8 py-3.5 rounded-xl text-xs font-black uppercase tracking-[2px] transition-all duration-300 ${
                     activeTab === cat
                       ? "bg-green-600 text-white shadow-xl shadow-green-600/30 ring-2 ring-green-600/20"
-                      : "text-slate-500 hover:text-green-600 hover:bg-green-50/50 dark:hover:bg-white/5"
+                      : "text-slate-500 hover:text-green-600 hover:bg-green-50/50 "
                   }`}
                 >
                   {cat}
@@ -60,8 +60,8 @@ export function Menu() {
                   onClick={() => setDietFilter(diet as any)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-xl border font-bold text-xs uppercase tracking-widest transition-all ${
                     dietFilter === diet
-                      ? "bg-slate-900 dark:bg-white text-white dark:text-black border-transparent"
-                      : "bg-transparent border-slate-200 dark:border-white/10 text-slate-500"
+                      ? "bg-slate-900  text-white  border-transparent"
+                      : "bg-transparent border-slate-200  text-slate-500"
                   }`}
                 >
                   {diet === "veg" && <span className="w-2 h-2 rounded-full bg-green-500" />}
@@ -73,8 +73,8 @@ export function Menu() {
           </div>
         </div>
 
-        {/* Menu Grid - 2-per-row as requested */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        {/* Menu Grid - 2-per-row as requested on all screens */}
+        <motion.div layout className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (
               <motion.div
@@ -84,7 +84,7 @@ export function Menu() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 whileHover={{ y: -16, transition: { duration: 0.4, ease: "circOut" } }}
-                className="group bg-white dark:bg-white/5 p-8 rounded-[48px] border border-black/5 dark:border-white-5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.02)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
+                className="group bg-white  p-8 rounded-[48px] border border-black/5  shadow-[0_25px_50px_-12px_rgba(0,0,0,0.02)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
               >
                 <div className="relative aspect-square md:aspect-video rounded-[36px] overflow-hidden mb-8 shadow-inner">
                   <Image 
@@ -98,14 +98,14 @@ export function Menu() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mb-4 px-2">
-                  <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">{item.name}</h3>
+                  <h3 className="text-2xl font-black text-slate-900  tracking-tighter">{item.name}</h3>
                   <span className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[2px] ${
-                    item.diet === "veg" ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                    item.diet === "veg" ? "bg-green-100 text-green-700  " : "bg-red-100 text-red-700  "
                   }`}>
                     {item.diet}
                   </span>
                 </div>
-                <p className="text-slate-500 dark:text-slate-400 text-sm px-2 leading-relaxed opacity-80">
+                <p className="text-slate-500  text-sm px-2 leading-relaxed opacity-80">
                   Carefully selected ingredients for maximum nutritional value and a burst of nature's flavors.
                 </p>
               </motion.div>
