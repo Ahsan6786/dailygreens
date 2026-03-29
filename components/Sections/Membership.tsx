@@ -27,7 +27,7 @@ export function Membership() {
   }
 
   return (
-    <section id="membership" className="py-32 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-hidden relative">
+    <section id="membership" className="py-32 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-x-hidden relative">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial="hidden"
@@ -37,7 +37,7 @@ export function Membership() {
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
-              transition: { staggerChildren: 0.1 }
+              transition: { staggerChildren: 0.05 }
             }
           }}
           className="text-center mb-20"

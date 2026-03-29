@@ -6,7 +6,7 @@ import { Play, Star } from "lucide-react";
 
 export function Hero() {
   return (
-    <section id="home" className="relative flex flex-col md:flex-row overflow-hidden bg-[#fdfaf6] transition-colors duration-500">
+    <section id="home" className="relative flex flex-col md:flex-row overflow-x-hidden bg-[#fdfaf6] transition-colors duration-500">
       {/* Sidebar Labels (Vertical) - Left Side */}
       <div className="absolute left-4 md:left-8 top-[60%] -translate-y-1/2 flex flex-col gap-16 z-20">
         {["material", "design", "process"].map((label) => (
@@ -60,8 +60,8 @@ export function Hero() {
             show: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.8
+                staggerChildren: 0.1,
+                delayChildren: 0.3
               }
             }
           }}

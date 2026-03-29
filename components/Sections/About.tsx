@@ -13,7 +13,7 @@ const features = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-hidden">
+    <section id="about" className="py-24 px-6 md:px-12 bg-[#fdfaf6]  transition-colors duration-500 overflow-x-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         {/* Image side */}
         <motion.div 
@@ -45,7 +45,7 @@ export function About() {
                 hidden: { opacity: 0 },
                 show: {
                   opacity: 1,
-                  transition: { staggerChildren: 0.1 }
+                  transition: { staggerChildren: 0.05 }
                 }
               }}
               initial="hidden"

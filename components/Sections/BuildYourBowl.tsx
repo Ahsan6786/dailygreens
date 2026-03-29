@@ -56,6 +56,7 @@ export function BuildYourBowl() {
               key={step}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
               className="bg-white p-8 md:p-12 rounded-[40px] border border-black/5 shadow-2xl relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-2 h-full bg-green-600" />

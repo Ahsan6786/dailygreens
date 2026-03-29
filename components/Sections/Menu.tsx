@@ -21,7 +21,7 @@ function MenuCard({ item }: { item: any }) {
     <div className="group perspective-[1000px] h-[280px] md:h-[420px] w-full">
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className="relative w-full h-full [transform-style:preserve-3d]"
       >
         {/* Front Side */}
@@ -83,7 +83,7 @@ export function Menu() {
   });
 
   return (
-    <section id="menu" className="py-24 px-6 md:px-12 bg-[#fdfaf6] transition-colors duration-500">
+    <section id="menu" className="py-24 px-6 md:px-12 bg-[#fdfaf6] transition-colors duration-500 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter uppercase">Explore Our Menu</h2>
